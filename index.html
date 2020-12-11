@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://s1.pstatp.com/cdn/expire-1-M/element-ui/2.8.2/theme-chalk/index.css" type="text/css" rel="stylesheet" />
+        <script src="https://s3.pstatp.com/cdn/expire-1-M/vue/2.6.10/vue.min.js" type="application/javascript"></script>
+        <script src="https://s2.pstatp.com/cdn/expire-1-M/element-ui/2.8.2/index.js" type="application/javascript"></script>
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+                position: relative;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-items: start;
+                align-items: center;
+                font-family: "PingFang SC";
+            }
+            div{
+                font-family: "PingFang SC";
+                font-weight:bolder;
+            }
+            #app {
+                width: 1100px;
+                position: relative;
+            }
+            table {
+                border-collapse: collapse;
+                box-sizing: border-box;
+            }
+            tr{
+                padding:10px 0px 10px 0px;
+            }
+            td {
+                border: 1px solid #ebeef5;
+                margin: 0px;
+                box-sizing: border-box;
+                padding:20px 0px 20px 0px;
+                text-align: center;
+                vertical-align: middle;
+
+            }
+            .material-col{
+                width: 700px;
+            }
+            .target-col{
+                width: 400px;
+            }
+            .material-container{
+                display: inline-flex;
+                flex-flow: column nowrap;;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+            }
+            .gray-tr{
+                background-color: #fafafa;
+            }
+            .material-icon{
+                height: 70px;
+                margin: 0px 0px 10px 0px;
+            }
+            .material-title{
+                font-size: 15px;
+            }
+            .target-title{
+                font-size: 20px;
+            }
+            .thead-title{
+                font-size: 20px;
+            }
+            .color-a{color: rgb(50, 215, 160);}
+            .color-g{color: rgb(255, 172, 0);}
+            .color-e{color: rgb(204, 128, 255);}
+            .color-d{color: rgb(165, 213, 52);}
+            .color-h{color: rgb(0, 192, 255);}
+            .color-p{color: rgb(255, 102, 64);}
+            .color-c{color: rgb(128, 255, 255);}
+            .color-l{color: rgb(226, 172, 87);}
+            .color-r{color: rgb(81, 161, 181);}
+            .color-u{color: rgb(94, 149, 109);}
+            .color-n{color: rgb(132, 132, 132);}
+            
+        </style>
+        <script>
+            window.materials = {
+                s0: [0, 1, 4],
+                s1: [0, 3, 6],
+                s2: [0, 2, 5],
+                s3: [0, 2, 5],
+                s4: [0, 3, 6],
+                s5: [0, 1, 4],
+                w0: [0, 1, 4],
+                w1: [0, 1, 4],
+                w2: [0, 2, 5],
+                w3: [0, 3, 6],
+                w4: [0, 3, 6],
+                w5: [0, 2, 5],
+            };
+            window.materialFileName = {
+                w0_0: "高塔孤王的破瓦",
+                w0_1: "高塔孤王的残垣",
+                w0_2: "高塔孤王的断片",
+                w0_3: "高塔孤王的碎梦",
+                w1_0: "孤云寒林的光砂",
+                w1_1: "孤云寒林的辉岩",
+                w1_2: "孤云寒林的圣骸",
+                w1_3: "孤云寒林的神体",
+                w2_0: "凛风奔狼的始龀",
+                w2_1: "凛风奔狼的裂齿",
+                w2_2: "凛风奔狼的断牙",
+                w2_3: "凛风奔狼的怀乡",
+                w3_0: "漆黑陨铁的一粒",
+                w3_1: "漆黑陨铁的一片",
+                w3_2: "漆黑陨铁的一角",
+                w3_3: "漆黑陨铁的一块",
+                w4_0: "狮牙斗士的枷锁",
+                w4_1: "狮牙斗士的铁链",
+                w4_2: "狮牙斗士的镣铐",
+                w4_3: "狮牙斗士的理想",
+                w5_0: "雾海云间的铅丹",
+                w5_1: "雾海云间的汞丹",
+                w5_2: "雾海云间的金丹",
+                w5_3: "雾海云间的转还",
+                s0_0: "「繁荣」的教导",
+                s0_1: "「繁荣」的指引",
+                s0_2: "「繁荣」的哲学",
+                s1_0: "「黄金」的教导",
+                s1_1: "「黄金」的指引",
+                s1_2: "「黄金」的哲学",
+                s2_0: "「抗争」的教导",
+                s2_1: "「抗争」的指引",
+                s2_2: "「抗争」的哲学",
+                s3_0: "「勤劳」的教导",
+                s3_1: "「勤劳」的指引",
+                s3_2: "「勤劳」的哲学",
+                s4_0: "「诗文」的教导",
+                s4_1: "「诗文」的指引",
+                s4_2: "「诗文」的哲学",
+                s5_0: "「自由」的教导",
+                s5_1: "「自由」的指引",
+                s5_2: "「自由」的哲学",
+            };
+            window.utilization = {
+                s0: ["e刻晴", "c七七", "g凝光"],
+                s1: ["h行秋", "e北斗", "g钟离", "p辛焱"],
+                s2: ["p班尼特", "p迪卢克", "h莫娜", "a琴", "e雷泽", "g诺艾尔"],
+                s3: ["p香菱", "c重云"],
+                s4: ["a温迪", "e丽莎", "e菲谢尔", "c凯亚"],
+                s5: ["h达达利亚", "c迪奥娜", "p安柏", "p可莉", "h芭芭拉", "a砂糖"],
+                w0: [
+                    "l风鹰剑",
+                    "e钟剑",
+                    "e西风剑",
+                    "e宗室长剑",
+                    "e宗室秘法录",
+                    "e西风秘典",
+                    "e绝弦",
+                    "e苍翠猎弓",
+                    "r铁影阔剑",
+                    "r冷刃",
+                    "r魔导绪论",
+                    "r鸦羽弓",
+                    "u银剑",
+                    "u口袋魔导书",
+                    "n无锋剑",
+                    "n学徒笔记",
+                ],
+                w1: [
+                    "l和璞鸢",
+                    "e白影剑",
+                    "e黑岩长剑",
+                    "e匣里龙吟",
+                    "e黑岩绯玉",
+                    "e黑岩战弓",
+                    "e匣里日月",
+                    "e弓藏",
+                    "e流月针",
+                    "r翡玉法球",
+                    "r弹弓",
+                    "r白缨枪",
+                ],
+                w2: [
+                    "l天空之翼",
+                    "l天空之卷",
+                    "l天空之刃",
+                    "l天空之傲",
+                    "e祭礼大剑",
+                    "e黑剑",
+                    "e笛剑",
+                    "e流浪乐章",
+                    "e祭礼弓",
+                    "e决斗之枪",
+                    "r沐浴龙血的剑",
+                    "r黎明神剑",
+                    "r讨龙英杰谭",
+                    "r神射手之誓",
+                    "u佣兵重剑",
+                    "u历练的猎弓",
+                    "n训练大剑",
+                    "n猎弓",
+                ],
+                w3: [
+                    "尘l世之锁",
+                    "l贯虹之槊",
+                    "e铁蜂刺",
+                    "e万国诸海图谱",
+                    "e钢轮弓",
+                    "e试作星镰",
+                    "e试作古华",
+                    "e螭骨剑",
+                    "r飞天大御剑",
+                    "r飞天御剑",
+                    "r黑缨枪",
+                ],
+                w4: [
+                    "l天空之脊",
+                    "l阿莫斯之弓",
+                    "l四风原典",
+                    "l狼的末路",
+                    "e宗室大剑",
+                    "e西风大剑",
+                    "e祭礼剑",
+                    "e祭礼残章",
+                    "e西风猎弓",
+                    "e宗室长弓",
+                    "e西风长枪",
+                    "r白铁大剑",
+                    "r旅行剑",
+                    "r异世界行记",
+                    "r反曲弓",
+                    "u铁尖枪",
+                    "n新手长枪",
+                ],
+                w5: [
+                    "l无工之剑",
+                    "e雨裁",
+                    "e试作斩岩",
+                    "e昭心",
+                    "e试作金珀",
+                    "e试作澹月",
+                    "e匣里灭辰",
+                    "e黑岩刺枪",
+                    "e黑岩斩刀",
+                    "r以理服人",
+                    "r吃虎鱼刀",
+                    "r甲级宝珏",
+                    "r信使",
+                    "r钺矛",
+                ],
+            };
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <el-container>
+                <el-header>
+                    <div style="font-size: 39px; font-weight: bold">原神每日素材本</div>
+                </el-header>
+                <el-main>
+                    <el-collapse v-model="activeName" accordion>
+                        <el-collapse-item v-for="(day,index) in days" :title="currentDay[day]" :name="index">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td class="thead-title">素材</td>
+                                        <td class="thead-title">用途</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(files,key) in dailyMaterial[day]" :class="{gray-tr:}">
+                                        <td class="material-col">
+                                            <div v-for="(material,index) in files" class="material-container">
+                                                <img :src="'img/'+material+'.png'" class="material-icon">
+                                                <div class="material-title">{{materialFileName[material]}}</div>
+
+                                            </div>
+                                        </td>
+                                        <td class="target-col">
+                                            <div v-for="(target,index) in utilization[key]" :class="'target-title color-' + target.substring(0,1)">{{target.substring(1,target.length)}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </el-collapse-item>
+
+
+                    </el-collapse>
+                </el-main>
+            </el-container>
+        </div>
+        <script>
+            const days = [1,2,3,4,5,6,0]
+            const materials = window.materials;
+            const materialFileName = window.materialFileName
+            const dailyMaterial = [{}, {}, {}, {}, {}, {}, {}];
+            const utilization = window.utilization
+            for (let d = 0; d < 7; d++) {
+                for (let material in materials) {
+                    if (materials[material].indexOf(d) > -1) {
+                        dailyMaterial[d][material] = [];
+                    }
+                }
+            }
+            for (let day in dailyMaterial) {
+                for (let material in dailyMaterial[day]) {
+                    for (let fileName in materialFileName) {
+                        if (fileName.startsWith(material)) {
+                            dailyMaterial[day][material].push(fileName);
+                        }
+                    }
+                }
+            }
+            console.log(dailyMaterial);
+
+            const currentDate = new Date();
+            const currentDay = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            currentDay[currentDate.getDay()] += "    (今天)";
+            new Vue({
+                el: "#app",
+                data() {
+                    return {
+                        visible: true,
+                        activeName: currentDate.getDay().toString(),
+                        currentDay,
+                        dailyMaterial,
+                        materialFileName,
+                        days,
+                        utilization,
+                    };
+                },
+            });
+
+            document.getElementsByClassName('el-collapse-item')[(currentDate.getDay()+6)%7].children[0].children[0].click()
+        </script>
+    </body>
+</html>
