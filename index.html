@@ -84,6 +84,9 @@
             
         </style>
         <script>
+            window.onload = function(){
+                document.getElementsByClassName('el-collapse-item')[(currentDate.getDay()+6)%7].children[0].children[0].click()
+            }
             window.materials = {
                 s0: [0, 1, 4],
                 s1: [0, 3, 6],
@@ -332,7 +335,6 @@
                 },
             });
 
-            document.getElementsByClassName('el-collapse-item')[(currentDate.getDay()+6)%7].children[0].children[0].click()
         </script>
     </body>
 </html>
