@@ -84,7 +84,6 @@
             
         </style>
         <script>
-
             window.materials = {
                 s0: [0, 1, 4],
                 s1: [0, 3, 6],
@@ -270,7 +269,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(files,key) in dailyMaterial[day]" :class="{gray-tr:}">
+                                    <tr v-for="(files,key) in dailyMaterial[day]" >
                                         <td class="material-col">
                                             <div v-for="(material,index) in files" class="material-container">
                                                 <img :src="'img/'+material+'.png'" class="material-icon">
@@ -333,6 +332,7 @@
                 },
             });
 
+            document.getElementsByClassName('el-collapse-item')[(currentDate.getDay()+6)%7].children[0].children[0].click()
         </script>
     </body>
 </html>
